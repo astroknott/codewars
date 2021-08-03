@@ -1,3 +1,5 @@
+// https://www.codewars.com/kata/5d0ae91acac0a50232e8a547/train/javascript
+
 function trafficLights(road, n) {
   let firstRow = road.split("");
   let cols = firstRow.map((ltr) => [ltr]);

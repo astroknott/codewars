@@ -1,3 +1,5 @@
+// https://www.codewars.com/kata/597d75744f4190857a00008d/solutions/javascript
+
 // My Original Solution
 var paintLetterboxes = function(start, end) {
   let res = [0,0,0,0,0,0,0,0,0,0];
