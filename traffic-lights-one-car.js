@@ -2,8 +2,14 @@
 
 function trafficLights(road, n) {
   let firstRow = road.split("");
-  let cols = firstRow.map((ltr) => [ltr]);
+  // get array of columns, fill empty spots with road "."
+  let cols = firstRow.map((ltr) => {
+    let arr = Array(n+1).fill(".");
+    arr[0] = ltr;
+    return arr;
+  });
 
+  // generates the column values for the light columns
   const genLightCol = (color) => {
     let lights = {
       R: { ct: 0, lim: false },
@@ -12,6 +18,7 @@ function trafficLights(road, n) {
     lights[color].ct = 1;
     let col = [color];
 
+    // counting how many have been in sequence to cycle colors
     for(let i=0; i<n; i++) {
       if (col[i]==="O") {
 	col.push("R");
@@ -29,30 +36,33 @@ function trafficLights(road, n) {
     }
     return col;
   }
-  
+
+  // generate column for each light
   cols.forEach((col,i)=>{
     if (col[0] === "R" || col[0] === "G" || col[0] === "O") {
       cols[i] = genLightCol(col[0]);
-    } else {
-      for(let j=0; j<n; j++) {
-	      cols[i][j] = ".";
-      }
     }
   })
-
-  console.log(cols)
   
   const genCarPath = (cols) => {
-    let rows;
-    for (let x=0;x<cols.length;x++) {
-      for (let y = 0; y < n; y++) {
-	rows[x][y] = cols[x][y];
+    // convert array of columns to array of rows
+    let rows = [];
+    for (let y = 0; y <= n; y++) {
+      rows.push([]);
+      for (let x=0;x<cols.length;x++) {
+	rows[y].push( cols[x][y] );
       }
     }
     let carPos = 0;
-    for (let i=0;i<rows.length;i++) {
-      carPos = rows[i][carPos + 1] === "R" ? carPos : carPos + 1;
-      rows[i][carPos] = "C";
+    rows[0][carPos] = "C";
+    // places car checking ahead for the light color
+    for (let i=1;i<rows.length;i++) {
+      let front = rows[i][carPos + 1];
+      let stopOn = "RO";
+      carPos = stopOn.includes(front) ? carPos : carPos + 1;
+      if (carPos < cols.length) {
+	rows[i][carPos] = "C";
+      }
     }
     
     return rows.map((row) => row.join(""));
