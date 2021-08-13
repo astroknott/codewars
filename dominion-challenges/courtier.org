@@ -1,0 +1,33 @@
+* coutier: better to get +3 now, or gain a gold
+** variables:
+*** how many more provinces can you get by adding 3 now
+*** how many more provinces can you get by adding a gold
+**** estimated turns to end
+**** average chance of opponents getting province
+**** deck size
+***** turnaround (how quickly you get to use)
+** simulate game
+*** lasts provinceNumber  modified by chance to get province
+**** chance to get province increases slowly as game goes on
+
+     #+begin_src js
+       let chanceToGetProvince = (turn) {
+  
+       }
+     #+end_src
+
+*** average gold per turn as a function of the turn number ( more average gold as turns go on )
+** simplify question
+*** given turns left in game, and deck size,  which gives you more money
+
+
+#+begin_src js
+  const moneyOrGold = (turnsLeft, deckSize) {
+    const cycle = deckSize / 5;
+    const goldVal = 3;
+    let wealthAddOfGold = turnsLeft / cycle * goldVal;
+    
+    return wealthAddOfGold > 3 ? "gold" : "+3"
+
+  }
+#+end_src
