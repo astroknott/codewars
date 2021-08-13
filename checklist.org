@@ -1,0 +1,17 @@
+* DONE arithmetic-progression
+  CLOSED: [2021-08-13 Fri 09:05]
+* TODO container-with-most-water
+* DONE de-morse-code
+  CLOSED: [2021-08-13 Fri 09:05]
+* TODO find-duplicates
+* TODO increment-string
+* TODO letterbox-paint-squad
+* DONE running-sum-1d-array
+  CLOSED: [2021-08-13 Fri 09:07]
+* DONE traffic-lights-one-car
+  CLOSED: [2021-08-13 Fri 09:06]
+* DONE true-for-all
+  CLOSED: [2021-08-13 Fri 09:07]
+* DONE valid_parentheses
+  CLOSED: [2021-08-13 Fri 09:07]
+* TODO where-my-anagrams-at

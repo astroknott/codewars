@@ -1,0 +1,50 @@
+* challenge
+Write a function that will find all the anagrams of a word from a list. You will be given two inputs a word and an array with words. You should return an array of all the anagrams or an empty array if there are none. For example:
+
+  "abba" ["baab", "adda","baba","aabd"] => ["baab", "baba"]
+
+* solution space
+
+** tree of possibilities for "abba"
+*** "a"
+**** "b"
+***** "b"
+****** "a" = "abba"      
+***** "a"     
+****** "b" = "abab"      
+**** "a"
+***** "b"
+****** "b" = "aabb"
+*** "b"
+**** "a"
+***** "b"
+****** "a" = "baba"
+***** "a"
+****** "b" = "baab"
+**** "b"
+***** "a"
+****** "a" = "bbaa"
+
+       
+       #+begin_src js
+	 {
+	   "a": {
+	     "b": {
+	       "b": {
+		 "a"
+	       }
+	     }
+	   },
+	   "b": {
+	     // ...etc
+	   }
+	 }
+       #+end_src
+
+*** To make the tree
+**** first level
+     is a Set of the letters, which should remove duplicates
+**** for each level after
+     remove first from initial word and repeat
+       
+** given that tree we can walk down it as we check words, stopping as soon as we know it isn't an anagram      

@@ -1,0 +1,4 @@
+need to output an array of each step of the summation process
+
+* possible solutions
+** do a normal sum, pushing to an array at each step  
