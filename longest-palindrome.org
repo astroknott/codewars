@@ -1,0 +1,42 @@
+#+begin_src js
+  var longestPalindrome = function(s) {
+    let ltrCount = Object.values( s.split("").reduce((struct, val) => {
+      struct[val] = (struct[val] || 0) + 1;
+      return struct;
+    }, {}) );
+
+    let pairs = ltrCount.map(n=>Math.floor(n/2)).reduce((acc,val)=>val+acc);
+
+    if (pairs == s.length/2) {
+      return s.length;
+    } else {
+      return pairs*2 + 1;
+    }
+  };
+
+#+end_src
+
+* given any number of letters return the longest palindrome you can make by rearranging letters
+** "bbasadeff"
+* facts about palindromes:
+** every letter appears with another of that letter, except for at most 1 letter(if it is center of odd-lengthed palindrome)
+** for every even numbered palindrome you can make it one longer by adding another letter in the middle
+* strategy
+** group letters into pairs
+** if there are any left over then the answer is 2(numOfPairs)+1
+** if there are none left over then the answer is the length of the input
+* Code strategy
+** filter out non pairs
+** using set to only show unique values
+*** split to array
+*** convert to Set
+*** compare lengths
+**** the difference is the number of pairs
+**** if difference is exactly half return original length
+**** if difference is not exactly half, then double difference and add 1
+*** doesn't account for letters that are repeated multiple times
+** using charcode to put in order
+** create a map of char counts
+* optimizations
+** remove unnecessary variables
+
