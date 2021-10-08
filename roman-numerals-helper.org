@@ -1,0 +1,65 @@
+# https://www.codewars.com/kata/51b66044bce5799a7f000003/train/
+
+#+begin_src js
+  // TODO: create a RomanNumerals helper object
+  class RomanNumeralsClass {
+    constructor() {
+      this.numeralConversionMap = {
+	'I': 1,
+	'V': 5,
+	'X': 10,
+	'L': 50,
+	'C': 100,
+	'D': 500,
+	'M': 1000
+      }
+    }
+
+    combineValues(arrayOfValues) {
+      return arrayOfValues.reduce((acc,val,idx,arr) => {
+	// don't have to check next numeral on last one
+	if (idx == arr.length - 1) return acc + val;
+	// if next value is larger then we need to subtract from next value
+	if (arr[idx + 1] > val) {
+	  arr[idx+1] -= val;
+	  return acc;
+	} else {
+	  return acc + val;
+	}
+      }, 0)
+    }
+
+    getNumerals(number) {
+      let convMap = this.numeralConversionMap;
+      let val = convMap[number];
+      if (val) return val;
+
+      let numeral = '';
+
+      for (const [key, value] of Object.entries(convMap)) {
+        numeral = number > value
+      }
+
+    }
+
+    fromRoman(romanNumeralString) {
+      let romanNumeralsArray = romanNumeralString.split("");
+      let valuesArray = romanNumeralsArray.map(numeral => this.numeralConversionMap[numeral]);
+      return this.combineValues(valuesArray);
+    }
+
+    toRoman(number) {
+      // convert number into array of digits
+      let digitsArray = number.toString().split("").map(string => +string);
+      let magnitudesArray = digitsArray.map((digit, idx, arr) => {
+	let numberPlace = Math.abs(idx - arr.length - 1);
+	let magnitude = Math.pow(10, numberPlace);
+	return magnitude * value;
+      });
+      return magnitudeArray.map(val => getNumerals(val)).join('');
+    }
+  }
+
+  let RomanNumerals = new RomanNumeralsClass()
+#+end_src
+
